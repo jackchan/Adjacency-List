@@ -18,21 +18,7 @@ def mat_to_list(adj_mat):
         adj_list_arr = []
         for j in range (len(adj_mat)):
             if (adj_mat[i][j] == 1):
-                print(j)
                 adj_list_arr.append(j)
         converted_list_arr.append(adj_list_arr)
-        
+
     return converted_list_arr
-
-adj_mat_1 =   [[0, 1, 0, 1, 0, 0],
-             [0, 0, 1, 0, 0, 0],
-             [1, 0, 0, 0, 0, 0],
-             [0, 0, 0, 0, 1, 0],
-             [0, 0, 0, 1, 0, 0],
-             [0, 0, 0, 0, 0, 0]]
-
-adj_list = [[1, 3], [2], [0], [4], [3], []]
-
-result = mat_to_list(adj_mat_1)
-print (result)
-print (result == adj_list)

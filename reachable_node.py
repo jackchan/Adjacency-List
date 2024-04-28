@@ -18,22 +18,15 @@ def reachable(adj_list, start_node):
     """
     reachable_node = set()
     
-    for i in range (len(adj_list[start_node])):
-        if (adj_list[start_node][i] in reachable_node):
-            return None
-        else:
-            reachable_node.add(adj_list[start_node][i])
-            reachable(adj_list, adj_list[start_node][i])
+    def reachable_search(node):
+        for i in range (len(adj_list[node])):
+            if (adj_list[node][i] in reachable_node):
+                break
+            else:
+                reachable_node.add(adj_list[node][i])
+                reachable_search(adj_list[node][i])
+        
+        reachable_node.add(node)
     
-    if (len(reachable_node)==0): 
-        reachable_node.add(start_node)
-
+    reachable_search(start_node)
     return reachable_node
-
-adj_list_1 = [[1, 3], [2], [0], [4], [3], []]
-
-adj_result_1 = {3, 4}
-
-result = reachable(adj_list_1, 1)
-print (result)
-print (result == adj_result_1)
