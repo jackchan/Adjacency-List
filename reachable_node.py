@@ -1,4 +1,3 @@
-reachable_node = set()
 
 def reachable(adj_list, start_node):
     """ Compute the nodes reachable from a start node
@@ -17,33 +16,24 @@ def reachable(adj_list, start_node):
 
 
     """
-
-    def reaching_node (adj_list, reachable_list, new_node, start_node):
-        # if start node == current node break
-        # if node already in set break
-        # add to set
-        # call the reach function
-        
-        if (new_node == start_node):
+    reachable_node = set()
+    
+    for i in range (len(adj_list[start_node])):
+        if (adj_list[start_node][i] in reachable_node):
             return None
-        
-        for i in range (len(reachable_list)):
-            if (reachable_list[i] in reachable_node):
-                return None
-            else:
-                reachable_node.add(reachable_list[i])
-                reaching_node(adj_list, adj_list[reachable_list[i]], reachable_list[i], start_node)
-            
-    current_node = adj_list[start_node]
-    for i in range(len(current_node)):
-        reachable_node.add(current_node[i])
-        reaching_node (adj_list, adj_list[current_node[i]],current_node[i], start_node)
+        else:
+            reachable_node.add(adj_list[start_node][i])
+            reachable(adj_list, adj_list[start_node][i])
+    
+    if (len(reachable_node)==0): 
+        reachable_node.add(start_node)
+
     return reachable_node
 
 adj_list_1 = [[1, 3], [2], [0], [4], [3], []]
 
 adj_result_1 = {3, 4}
 
-result = reachable(adj_list_1, 3)
+result = reachable(adj_list_1, 1)
 print (result)
 print (result == adj_result_1)
